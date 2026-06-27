@@ -460,6 +460,7 @@ namespace gamescope
         virtual void SetRelativeMouseMode( bool bRelative ) override;
         virtual void SetVisible( bool bVisible ) override;
         virtual void SetTitle( std::shared_ptr<std::string> szTitle ) override;
+        virtual void SetWindowClass( const char *sWindowClass ) override;
         virtual void SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels ) override;
         virtual void SetSelection( std::shared_ptr<std::string> szContents, GamescopeSelection eSelection ) override;
     private:
@@ -1306,6 +1307,10 @@ namespace gamescope
 		if ( g_bGrabbed )
 			szTitle += " (grabbed)";
 		libdecor_frame_set_title( m_Planes[0].GetFrame(), szTitle.c_str() );
+	}
+	void CWaylandConnector::SetWindowClass( const char *sWindowClass )
+	{
+		libdecor_frame_set_app_id( m_Planes[0].GetFrame(), sWindowClass );
 	}
 	void CWaylandConnector::SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels )
 	{

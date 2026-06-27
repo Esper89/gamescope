@@ -4093,6 +4093,8 @@ steamcompmgr_xdg_determine_and_apply_focus( const std::vector< steamcompmgr_win_
 
 uint32_t g_focusedBaseAppId = 0;
 
+const char *g_sCustomWindowClass = nullptr;
+
 static void
 determine_and_apply_focus( global_focus_t *pFocus )
 {
@@ -4532,6 +4534,8 @@ determine_and_apply_focus( global_focus_t *pFocus )
 		{
 			pFocus->GetNestedHints()->SetVisible( false );
 		}
+
+		pFocus->GetNestedHints()->SetWindowClass( g_sCustomWindowClass ? g_sCustomWindowClass : "gamescope" );
 	}
 
 	// Some games such as Disgaea PC (405900) don't take controller input until
@@ -8367,6 +8371,8 @@ steamcompmgr_main(int argc, char **argv)
 					g_reshade_effect = optarg;
 				} else if (strcmp(opt_name, "reshade-technique-idx") == 0) {
 					g_reshade_technique_idx = atoi(optarg);
+				} else if (strcmp(opt_name, "window-class") == 0) {
+					g_sCustomWindowClass = optarg;
 				} else if (strcmp(opt_name, "mura-map") == 0) {
 					set_mura_overlay(optarg);
 				}

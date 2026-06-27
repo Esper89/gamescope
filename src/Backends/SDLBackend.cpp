@@ -115,6 +115,7 @@ namespace gamescope
         virtual void SetRelativeMouseMode( bool bRelative ) override;
         virtual void SetVisible( bool bVisible ) override;
         virtual void SetTitle( std::shared_ptr<std::string> szTitle ) override;
+        virtual void SetWindowClass( const char *sWindowClass ) override;
         virtual void SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels ) override;
         virtual void SetSelection( std::shared_ptr<std::string> szContents, GamescopeSelection eSelection ) override;
 
@@ -179,6 +180,7 @@ namespace gamescope
         void SetRelativeMouseMode( bool bRelative );
         void SetVisible( bool bVisible );
         void SetTitle( std::shared_ptr<std::string> szTitle );
+        void SetWindowClass( const char *sWindowClass );
         void SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels );
         void SetSelection( std::shared_ptr<std::string> szContents, GamescopeSelection eSelection );
 	protected:
@@ -375,6 +377,10 @@ namespace gamescope
 	{
 		m_pBackend->SetTitle( std::move( szTitle ) );
 	}
+	void CSDLConnector::SetWindowClass( const char *sWindowClass )
+	{
+		m_pBackend->SetWindowClass( sWindowClass );
+	}
 	void CSDLConnector::SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels )
 	{
 		m_pBackend->SetIcon( std::move( uIconPixels ) );
@@ -541,6 +547,7 @@ namespace gamescope
 		m_pApplicationTitle = szTitle;
 		PushUserEvent( GAMESCOPE_SDL_EVENT_TITLE );
 	}
+	void CSDLBackend::SetWindowClass( const char *sWindowClass ) { }
 	void CSDLBackend::SetIcon( std::shared_ptr<std::vector<uint32_t>> uIconPixels )
 	{
 		m_pApplicationIcon = uIconPixels;

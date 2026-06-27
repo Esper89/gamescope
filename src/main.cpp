@@ -85,6 +85,7 @@ const struct option *gamescope_options = (struct option[]){
 	{ "grab", no_argument, nullptr, 'g' },
 	{ "force-grab-cursor", no_argument, nullptr, 0 },
 	{ "display-index", required_argument, nullptr, 0 },
+	{ "window-class", required_argument, nullptr, 0 },
 
 	// embedded mode options
 	{ "disable-layers", no_argument, nullptr, 0 },
@@ -224,7 +225,8 @@ const char usage[] =
 	"  -f, --fullscreen               make the window fullscreen\n"
 	"  -g, --grab                     grab the keyboard\n"
 	"  --force-grab-cursor            always use relative mouse mode instead of flipping dependent on cursor visibility.\n"
-	"  --display-index                forces gamescope to use a specific display in nested mode."
+	"  --display-index                forces gamescope to use a specific display in nested mode.\n"
+	"  --window-class                 the wmclass/appid of the window.\n"
 	"\n"
 	"Embedded mode options:\n"
 	"  -O, --prefer-output            list of connectors in order of preference (ex: DP-1,DP-2,DP-3,HDMI-A-1)\n"
